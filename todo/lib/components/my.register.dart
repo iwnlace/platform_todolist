@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:todo/constants.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:todo/pages/home_page.dart';
@@ -17,21 +16,34 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController user = TextEditingController();
   final TextEditingController password = TextEditingController();
-  Future register() async {
+  Future<void> register() async {
     var url = "http://192.168.254.102/todolist/register.php";
-    var response = await http.post(Uri.parse(url), body: {
-      "username": user.text.toString(),
-      "password": password.text.toString()
-    });
-    var data = json.decode(response.body);
-    if (data == "Error") {
-      Fluttertoast.showToast(msg: 'User already exist!');
-    } else {
-      Fluttertoast.showToast(msg: 'Register Succesful');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: ((context) => const HomePage(title: 'title'))));
+
+    try {
+      var response = await http.post(Uri.parse(url), body: {
+        "username": user.text.toString(),
+        "password": password.text.toString(),
+      });
+
+      var data = json.decode(response.body);
+      if (response.statusCode == 200) {
+        if (data == "Error") {
+          Fluttertoast.showToast(msg: 'User already exists!');
+        } else {
+          Fluttertoast.showToast(msg: 'Registration Successful');
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomePage(title: 'title'),
+            ),
+          );
+        }
+      } else {
+        throw Exception(
+            'Failed to load data, status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      Fluttertoast.showToast(msg: 'Registration failed. Please try again.');
     }
   }
 
