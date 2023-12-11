@@ -15,29 +15,28 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController user = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  Future register() async {
+    var url = "http://192.168.254.102/todolist/register.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "username": user.text.toString(),
+      "password": password.text.toString()
+    });
+    var data = json.decode(response.body);
+    if (data == "Error") {
+      Fluttertoast.showToast(msg: 'User already exist!');
+    } else {
+      Fluttertoast.showToast(msg: 'Register Succesful');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => const HomePage(title: 'title'))));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController user = TextEditingController();
-    final TextEditingController password = TextEditingController();
-    Future register() async {
-      var url =
-          Uri.http(Constants().ip, '/todolist/register.php', {'q': '{http}'});
-      var response = await http.post(url, body: {
-        "username": user.text.toString(),
-        "password": password.text.toString()
-      });
-      var data = json.decode(response.body);
-      if (data == "Error") {
-        Fluttertoast.showToast(msg: 'User already exist!');
-      } else {
-        Fluttertoast.showToast(msg: 'Register Succesful');
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => const HomePage(title: 'title'))));
-      }
-    }
-
     return Scaffold(
         backgroundColor: Colors.grey[200],
         resizeToAvoidBottomInset: false,
