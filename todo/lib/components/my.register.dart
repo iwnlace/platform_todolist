@@ -19,10 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController password = TextEditingController();
   Future register() async {
     var url = "http://192.168.254.102/todolist/register.php";
-    var response = await http.post(Uri.parse(url), body: {
-      "username": user.text.toString(),
-      "password": password.text.toString()
-    });
+    var response = await http.post(Uri.parse(url),
+        body: {"username": user.text, "password": password.text});
     var data = await json.decode(json.encode(response.body));
     if (data == "Error") {
       Fluttertoast.showToast(msg: 'User already exist!');

@@ -10,7 +10,6 @@ class LoginScreen extends StatefulWidget {
       {super.key, required void Function() onTap, required String title});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -19,15 +18,15 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController password = TextEditingController();
   Future login() async {
     var url = "http://192.168.254.102/todolist/login.php";
-    var response = await http.post(Uri.parse(url), body: {
-      "username": user.text.toString(),
-      "password": password.text.toString()
-    });
+    var response = await http.post(Uri.parse(url),
+        body: {"username": user.text, "password": password.text});
     var data = await json.decode(json.encode(response.body));
     if (data == "Success") {
       Fluttertoast.showToast(msg: 'Login Successful');
       Navigator.push(context,
           MaterialPageRoute(builder: ((context) => const HomePage(title: ''))));
+    } else {
+      Fluttertoast.showToast(msg: 'Incorrect Username and Password');
     }
   }
 
