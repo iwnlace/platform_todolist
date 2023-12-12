@@ -70,7 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white),
-                  onPressed: login,
+                  onPressed: () {
+                    login();
+                  },
                   child: const Text('Login')),
               GestureDetector(
                   onTap: () {
