@@ -22,7 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       "username": user.text.toString(),
       "password": password.text.toString()
     });
-    var data = json.decode(response.body);
+    var data = await json.decode(json.encode(response.body));
     if (data == "Error") {
       Fluttertoast.showToast(msg: 'User already exist!');
     } else {
