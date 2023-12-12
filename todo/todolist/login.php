@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include_once ('db.php');
 $username =$_POST['username'];
 $password = $_POST['password'];
 $sql = "SELECT username FROM users WHERE username = ('".$username."') AND _password = md5('".$password."')";
