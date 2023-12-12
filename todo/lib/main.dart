@@ -2,8 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/components/my.register.dart';
 
-import 'package:todo/pages/home_page.dart';
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();

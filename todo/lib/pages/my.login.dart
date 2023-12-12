@@ -2,36 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:todo/components/my.register.dart';
 import 'package:todo/pages/home_page.dart';
-import 'package:todo/pages/my.login.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen(
+class LoginScreen extends StatefulWidget {
+  const LoginScreen(
       {super.key, required void Function() onTap, required String title});
 
   @override
   // ignore: library_private_types_in_public_api
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController user = TextEditingController();
   final TextEditingController password = TextEditingController();
-  Future register() async {
-    var url = "http://192.168.254.102/todolist/register.php";
+  Future login() async {
+    var url = "http://192.168.254.102/todolist/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "username": user.text.toString(),
       "password": password.text.toString()
     });
     var data = await json.decode(json.encode(response.body));
-    if (data == "Error") {
-      Fluttertoast.showToast(msg: 'User already exist!');
-    } else {
-      Fluttertoast.showToast(msg: 'Register Succesful');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: ((context) => const HomePage(title: 'title'))));
+    if (data == "Success") {
+      Fluttertoast.showToast(msg: 'Login Successful');
+      Navigator.push(context,
+          MaterialPageRoute(builder: ((context) => const HomePage(title: ''))));
     }
   }
 
@@ -45,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           backgroundColor: Colors.grey[300],
           elevation: 0,
           title: const Text(
-            "Register",
+            "Login",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
@@ -69,19 +65,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   )),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black, // background (button) color
-                  foregroundColor: Colors.white,
-                ), // foreground (text) color
-                onPressed: register,
-                child: const Text('Register'),
-              ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          Colors.black, // background (button) color
+                      foregroundColor: Colors.white), // foreground (text) color
+                  onPressed: login,
+                  child: const Text('Login')),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => LoginScreen(
+                          builder: (context) => RegisterScreen(
                                 title: "",
                                 onTap: () {},
                               )),
@@ -90,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(
                           color: Colors.blue, fontWeight: FontWeight.bold),
                     ),
