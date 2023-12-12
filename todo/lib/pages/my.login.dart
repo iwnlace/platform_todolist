@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
@@ -16,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController user = TextEditingController();
   final TextEditingController password = TextEditingController();
+
   Future login() async {
     var url = "http://192.168.254.102/todolist/login.php";
     var response = await http.post(Uri.parse(url),
@@ -65,9 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 16.0),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Colors.black, // background (button) color
-                      foregroundColor: Colors.white), // foreground (text) color
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white),
                   onPressed: login,
                   child: const Text('Login')),
               GestureDetector(
