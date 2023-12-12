@@ -1,14 +1,19 @@
 <?php
-include_once ('db.php');
-$username =$_POST['username'];
+$db = mysqli_connect ('localhost','root','','mydb');
+
+$username = $_POST['username'];
 $password = $_POST['password'];
-$sql = "SELECT username FROM users WHERE username = ('".$username."') AND _password = md5('".$password."')";
-$result = mysqli_query ($db, $sql);
+
+$sql = "SELECT * FROM users WHERE username = '".$username."' AND password = '".$password."'";
+
+$result = mysqli_query($db,$sql);
 $count = mysqli_num_rows($result);
-    if ($count == 1) {
-        echo json_encode("Success");
-    }
+
+if ($count == 1) {
+    echo json_encode("Success");
+}
 else {
     echo json_encode("Error");
 }
+?>
     

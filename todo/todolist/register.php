@@ -1,5 +1,5 @@
 <?php
-include_once ('db.php');
+include 'db.php';
 if (!$db) {
     echo "Database connection failed";
 }
