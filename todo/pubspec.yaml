@@ -45,6 +45,7 @@ dependencies:
   http: 
   html: ^0.15.4
   firebase_storage: ^11.5.6
+  firebase_app_check: ^0.2.1+8
 
 dev_dependencies:
   flutter_test:

@@ -38,19 +38,19 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.all(16.0),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              TextField(
+              TextFormField(
                   controller: user,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Email',
+                    labelText: 'Email',
                   )),
               const SizedBox(height: 16.0),
-              TextField(
+              TextFormField(
                   controller: password,
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Password',
+                    labelText: 'Password',
                   )),
               const SizedBox(height: 16.0),
               ElevatedButton(
