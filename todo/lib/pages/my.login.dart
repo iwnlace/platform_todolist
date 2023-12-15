@@ -62,24 +62,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: const Text('Login')),
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RegisterScreen(
-                                title: "Activities",
-                                onTap: () {},
-                              )),
-                    );
-                  },
-                  child: const Padding(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RegisterScreen(
+                              title: "Activities",
+                              onTap: () {},
+                            )),
+                  );
+                },
+                child: const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold),
-                    ),
-                  ))
+                    child: Text('Register',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ))),
+              )
             ])));
   }
 }

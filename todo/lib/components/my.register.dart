@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:todo/pages/my.login.dart';
 import 'package:todo/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen(
       {super.key, required void Function() onTap, required String title});
-
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final Auth _auth = Auth();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+
+  bool isLogin = true;
+  String? errorMessage = '';
+  String email = "";
+  String password = "";
+
+  final User? user = Auth().currentUser;
 
   @override
   void dispose() {
@@ -41,11 +49,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               TextField(
-                  controller: _email,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Email',
-                  )),
+                controller: _email,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Email',
+                ),
+              ),
               const SizedBox(height: 16.0),
               TextField(
                   controller: _password,
@@ -60,12 +70,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   backgroundColor: Colors.black, // background (button) color
                   foregroundColor: Colors.white,
                 ), // foreground (text) color
-                onPressed: () {
-                  ();
-                },
+                onPressed: () {},
                 child: const Text('Register'),
               ),
               ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -78,11 +88,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold),
-                    ),
+                    child: Text('Login',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        )),
                   ))
             ])));
   }
