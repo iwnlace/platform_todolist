@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => RegisterScreen(
-                                title: "",
+                                title: "Activities",
                                 onTap: () {},
                               )),
                     );
