@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/components/my.register.dart';
 import 'package:todo/pages/home_page.dart';
 import 'package:todo/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -121,7 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor: Colors.black),
                           onPressed: () {
                             Navigator.push(
-                                context, const HomePage() as Route<Object?>);
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegisterScreen()));
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),

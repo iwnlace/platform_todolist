@@ -43,7 +43,12 @@ class _HomePageState extends State<HomePage> {
                     "Organize and manage your activities below.",
                     style: TextStyle(fontSize: 16),
                   ),
+                  const SizedBox(
+                    height: 560.0, // height you want
+                  ),
                   ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.black),
                     onPressed: () {
                       _auth.signOut();
                       Navigator.push(
@@ -51,7 +56,10 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                               builder: (context) => const LoginScreen()));
                     },
-                    child: const Text("Signout"),
+                    child: const Text(
+                      "Signout",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   )
                 ],
               ),

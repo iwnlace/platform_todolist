@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/my.login.dart';
 import 'package:todo/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -30,6 +31,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: password,
       );
       print("User Registered: ${userCredential.user!.email}");
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
     } catch (e) {
       print("Error During Regsitration: $e");
     }
@@ -120,7 +123,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               backgroundColor: Colors.black),
                           onPressed: () {
                             Navigator.push(
-                                context, HomePage() as Route<Object?>);
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()));
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),
