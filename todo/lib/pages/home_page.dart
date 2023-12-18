@@ -1,44 +1,58 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:todo/components/my.register.dart';
+import 'package:todo/pages/my.login.dart';
+import 'package:todo/services/auth.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({
+    super.key,
+  });
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
-        title: Text(widget.title),
       ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: ListView(
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.all(6.0),
+              padding: const EdgeInsets.all(6.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Tasks",
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     "Organize and manage your activities below.",
                     style: TextStyle(fontSize: 16),
                   ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _auth.signOut();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                    },
+                    child: const Text("Signout"),
+                  )
                 ],
               ),
             )

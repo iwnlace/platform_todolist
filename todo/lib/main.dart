@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:todo/components/my.register.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/my.login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,11 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: RegisterScreen(
-          title: "Activities",
-          onTap: () {},
-        ));
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
