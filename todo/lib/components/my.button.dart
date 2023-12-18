@@ -19,10 +19,7 @@ class MyButton extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const HomePage(
-                        title: "",
-                      )),
+              MaterialPageRoute(builder: (context) => HomePage()),
             );
           },
           child: const Center(

@@ -29,6 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
         password: password,
       );
       print("User Logged In: ${userCredential.user!.email}");
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
     } catch (e) {
       print("Error During Login: $e");
     }
@@ -118,8 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black),
                           onPressed: () {
-                            Navigator.push(context,
-                                HomePage(title: "title") as Route<Object?>);
+                            Navigator.push(
+                                context, const HomePage() as Route<Object?>);
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),

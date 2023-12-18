@@ -4,8 +4,9 @@ import 'package:todo/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen(
-      {super.key, required void Function() onTap, required String title});
+  const RegisterScreen({
+    super.key,
+  });
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -119,9 +120,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               backgroundColor: Colors.black),
                           onPressed: () {
                             Navigator.push(
-                                context,
-                                const HomePage(title: "title")
-                                    as Route<Object?>);
+                                context, HomePage() as Route<Object?>);
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),
