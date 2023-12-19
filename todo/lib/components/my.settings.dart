@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/components/my.profile.dart';
 import 'package:todo/pages/home_page.dart';
+import 'package:todo/pages/todo.page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -88,6 +89,16 @@ class _SettingsPageState extends State<SettingsPage> {
             backgroundColor: Colors.grey[200],
             foregroundColor: Colors.black,
             children: [
+              SpeedDialChild(
+                child: const Icon(Icons.add),
+                label: 'Add Task',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ToDoPage()));
+                },
+              ),
               SpeedDialChild(
                 child: const Icon(Icons.home),
                 label: 'Home',
