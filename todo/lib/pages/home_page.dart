@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.all(6.0),
+              padding: const EdgeInsets.all(5.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,22 +45,22 @@ class _HomePageState extends State<HomePage> {
                     "Organize and manage your activities below.",
                     style: TextStyle(fontSize: 16),
                   ),
-                  const SizedBox(
-                    height: 560.0, // height you want
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[100]),
-                    onPressed: () {
-                      _auth.signOut();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
-                    },
-                    child: const Text(
-                      "Signout",
-                      style: TextStyle(color: Colors.black),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 610.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[100]),
+                      onPressed: () {
+                        _auth.signOut();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()));
+                      },
+                      child: const Text(
+                        "Signout",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   )
                 ],
