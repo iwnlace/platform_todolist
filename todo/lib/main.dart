@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo/components/my.profile.dart';
-import 'package:todo/components/my.register.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
-import 'package:todo/pages/home_page.dart';
 import 'package:todo/pages/my.login.dart';
 import 'package:todo/components/my.settings.dart';
 
