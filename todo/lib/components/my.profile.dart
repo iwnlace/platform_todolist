@@ -1,74 +1,40 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:todo/components/my.profile.dart';
-import 'package:todo/components/my.register.dart';
 import 'package:todo/components/my.settings.dart';
+import 'package:todo/pages/home_page.dart';
 import 'package:todo/pages/my.login.dart';
-import 'package:todo/services/auth.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({
-    super.key,
-  });
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class ProfilePage extends StatelessWidget {
+  ProfilePage({super.key});
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    String? email = _auth.currentUser!.email;
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        backgroundColor: Colors.grey[300],
-      ),
-      body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: ListView(
+      backgroundColor: Colors.grey[200],
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Tasks",
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                  ),
-                  const Text(
-                    "Organize and manage your activities below.",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(
-                    height: 560.0, // height you want
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[100]),
-                    onPressed: () {
-                      _auth.signOut();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
-                    },
-                    child: const Text(
-                      "Signout",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ],
-              ),
-            )
+            const SizedBox(height: 40),
+            const CircleAvatar(
+              radius: 70,
+              backgroundImage: AssetImage('assets/user.jpg'),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            itemProfile('Email', "$email", CupertinoIcons.mail),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
-      )),
+      ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SpeedDial(
@@ -118,4 +84,25 @@ class _HomePageState extends State<HomePage> {
 
     Fluttertoast.showToast(msg: message, fontSize: 18);
   }
+}
+
+itemProfile(String title, String subtitle, IconData iconData) {
+  return Container(
+    decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+              offset: const Offset(0, 5),
+              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.2),
+              spreadRadius: 2,
+              blurRadius: 10)
+        ]),
+    child: ListTile(
+      title: Text(title),
+      subtitle: Text(subtitle),
+      leading: Icon(iconData),
+      tileColor: Colors.white,
+    ),
+  );
 }
