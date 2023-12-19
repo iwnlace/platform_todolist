@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todo/components/my.profile.dart';
-import 'package:todo/components/my.register.dart';
 import 'package:todo/components/my.settings.dart';
+import 'package:todo/components/my.todo.dart';
 import 'package:todo/pages/my.login.dart';
-import 'package:todo/services/auth.dart';
+import 'package:todo/pages/todo.page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Tasks",
+                    "Home",
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   const Text(
@@ -79,6 +79,12 @@ class _HomePageState extends State<HomePage> {
               SpeedDialChild(
                 child: const Icon(Icons.add),
                 label: 'Add Task',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ToDoPage()));
+                },
               ),
               SpeedDialChild(
                 child: const Icon(Icons.home),
