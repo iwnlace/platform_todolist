@@ -5,7 +5,6 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todo/components/my.settings.dart';
 import 'package:todo/pages/home_page.dart';
-import 'package:todo/pages/my.login.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -42,10 +41,6 @@ class ProfilePage extends StatelessWidget {
             backgroundColor: Colors.grey[200],
             foregroundColor: Colors.black,
             children: [
-              SpeedDialChild(
-                child: const Icon(Icons.add),
-                label: 'Add Task',
-              ),
               SpeedDialChild(
                 child: const Icon(Icons.home),
                 label: 'Home',

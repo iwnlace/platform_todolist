@@ -46,6 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ListTile(
               title: const Text('Private Profile'),
               trailing: Switch(
+                activeColor: Colors.black,
                 value: darkMode,
                 onChanged: (value) {
                   setState(() {
@@ -67,6 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text('Receive Notifications'),
               trailing: Switch(
                 value: receiveNotifications,
+                activeColor: Colors.black,
                 onChanged: (value) {
                   setState(() {
                     receiveNotifications = value;
@@ -86,10 +88,6 @@ class _SettingsPageState extends State<SettingsPage> {
             backgroundColor: Colors.grey[200],
             foregroundColor: Colors.black,
             children: [
-              SpeedDialChild(
-                child: const Icon(Icons.add),
-                label: 'Add Task',
-              ),
               SpeedDialChild(
                 child: const Icon(Icons.home),
                 label: 'Home',
